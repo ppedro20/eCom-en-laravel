@@ -1,3 +1,11 @@
+<?php
+use App\Http\Controllers\ProductController;
+$total = 0;
+if (Session::has('user')) {
+    $total = ProductController::cartItem();
+}
+?>
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -9,13 +17,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Brand</a>
+            <a class="navbar-brand" href="/">E-Comm</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li class=""><a href="#">Orders</a></li>
             </ul>
             <form class="navbar-form navbar-left">
@@ -25,7 +33,19 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Cart(0)</a></li>
+                <li><a href="#">Cart({{ $total }})</a></li>
+                @if (Session::has('user'))
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        {{Session::get('user')['name']}}
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </li>
+                @else
+                <li><a href="/login">Login</a></li>
+                @endif
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

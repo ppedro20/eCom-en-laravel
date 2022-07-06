@@ -22,14 +22,43 @@
 </head>
 
 <body>
-    {{View::make('header')}}
+    {{ View::make('header') }}
     @yield('content')
-    {{View::make('footer')}}
+    {{ View::make('footer') }}
 </body>
 <style>
     .custom-login {
         height: 500px;
         padding-top: 100px;
     }
+
+    img.slider-img {
+        height: 400px !important;
+    }
+
+    .custom-product {
+        height: 600px;
+    }
+
+    .slider-text {
+        background-color: #354435 !important;
+    }
+
+    .trending-image {
+        height: 100px;
+    }
+
+    .trending-item {
+        float: left;
+        width: 20%;
+    }
+
+    .trending-wrapper {
+        margin: 20px;
+    }
+    .detail-img{
+        height: 200px;
+    }
 </style>
+
 </html>
